@@ -46,9 +46,10 @@ array로 data : {…, …, ...}
 | area        | 구역 정보               | string |
 | creator     | 작성자 id               | serial |
 | timestamp   | 작성 시점 (정렬시 필요) | date   |
-| like        | 좋아요 갯수             | int    |
-| dislike     | 싫어요 갯수             | int    |
-| comments    |                         | array  |
+| total_likes        | 좋아요 갯수             | int    |
+| total_dislikes     | 싫어요 갯수             | int    |
+| comments    |   해당 agenda 하위 댓글들      | array  |  
+| likes   |   해당 agenda 하위 좋아요, 싫어요      | array  |
 
 
 
