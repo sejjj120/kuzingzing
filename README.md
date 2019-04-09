@@ -79,20 +79,23 @@ array로 data : {…, …, ...}
 
 
 
-### POST /like
+### POST /like ( 첫 번째 좋아요 / 싫어요인 경우)
 
 #### [Request]
 
 | 키        | 설명           | 필수 | 타입   |
 | --------- | -------------- | ---- | ------ |
 | agenda_id | 게시물의 id 값 | O    | serial |
+| user | 현재 로그인된 유저 | O    |   |
 
 #### [Response]
 
 | 키        | 설명                      | 타입   |
 | --------- | ------------------------- | ------ |
-| agenda_id | 게시물의 id 값            | serial |
-| like      | 해당 게시물의 좋아요 갯수 | int    |
+| agenda   | 게시물의 id 값            | serial |
+| creator   | 작성자 | serial    |
+| likenum   | 좋아요 개수 | integer   |
+| dislikenum   | 싫어요 개수 | integer  |
 
 
 
