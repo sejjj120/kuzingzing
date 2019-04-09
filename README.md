@@ -78,6 +78,16 @@ array로 data : {…, …, ...}
 | comment     |                | array  |
 
 
+첫 번째 좋아요 / 싫어요인 경우 해당 Agenda, User와 연결된 object가 없기 때문에
+POST로 likenum or dislikenum =1 인 object 생성
+
+두 번째 좋아요인 경우 해당 object가 이미 존재하기 때문에 해당 object의 필드값만 수정해주기 위해
+detail url에서 likenum or dislikenum +=1
+
+likenum, dislikenum field는 0 이상의 정수로만 존재 가능
+둘 중 한 필드가 양수일 때 다른 필드를 누른 경우 양수인 필드에서 -=1
+ex) likenum이 0, dislikenum이 4일 때 likenum누르면 dislikenum이 3됨.
+
 
 ### POST /likes ( 첫 번째 좋아요 / 싫어요인 경우)
 
