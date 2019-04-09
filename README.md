@@ -79,7 +79,7 @@ array로 data : {…, …, ...}
 
 
 
-### POST /like ( 첫 번째 좋아요 / 싫어요인 경우)
+### POST /likes ( 첫 번째 좋아요 / 싫어요인 경우)
 
 #### [Request]
 
@@ -99,36 +99,41 @@ array로 data : {…, …, ...}
 
 
 
-### POST /dislike
+### PUT /likes/<해당 유저, agenda에 해당하는 Like object의 pk값> ( 두 번째 이상 좋아요, 싫어요인 경우 )
 
 #### [Request]
 
 | 키        | 설명           | 필수 | 타입   |
 | --------- | -------------- | ---- | ------ |
-| agenda_id | 게시물의 id 값 | O    | serial |
+| likenum or dislikenum | +=1 | O    | integer |
 
 #### [Response]
 
 | 키        | 설명                      | 타입   |
 | --------- | ------------------------- | ------ |
-| agenda_id | 게시물의 id 값            | serial |
-| dislike   | 해당 게시물의 싫어요 갯수 | int    |
+| agenda   | 게시물의 id 값            | serial |
+| creator   | 작성자 | serial    |
+| likenum   | 좋아요 개수 | integer   |
+| dislikenum   | 싫어요 개수 | integer  |
 
 
 
-### POST /comment
+### POST /comments
 
 #### [Request]
 
 | 키        | 설명           | 필수 | 타입   |
 | --------- | -------------- | ---- | ------ |
-| agenda_id | 게시물의 id 값 | O    | serial |
-| comment   | 댓글 내용      | O    | string |
+| agenda | 게시물의 id 값 | O    | serial |
+| content   | 댓글 내용      | O    | string |
 
 #### [Response]
 
 | 키        | 설명           | 타입   |
 | --------- | -------------- | ------ |
 | agenda_id | 게시물의 id 값 | serial |
-| comments  |                | array  |
+| content |                | string |
+| creator |                | User |
+| timestamp  |                | datetime |
+| like  |                | integer|
 
