@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 winvenv/
 macvenv/
+frontend/node_modules
