@@ -46,9 +46,10 @@ array로 data : {…, …, ...}
 | area        | 구역 정보               | string |
 | creator     | 작성자 id               | serial |
 | timestamp   | 작성 시점 (정렬시 필요) | date   |
-| like        | 좋아요 갯수             | int    |
-| dislike     | 싫어요 갯수             | int    |
-| comments    |                         | array  |
+| total_likes        | 좋아요 갯수             | int    |
+| total_dislikes     | 싫어요 갯수             | int    |
+| comments    |   해당 agenda 하위 댓글들      | array  |  
+| likes   |   해당 agenda 하위 좋아요, 싫어요      | array  |
 
 
 
@@ -77,54 +78,70 @@ array로 data : {…, …, ...}
 | comment     |                | array  |
 
 
+첫 번째 좋아요 / 싫어요인 경우 해당 Agenda, User와 연결된 object가 없기 때문에
+POST로 likenum or dislikenum =1 인 object 생성
+두 번째 좋아요인 경우 해당 object가 이미 존재하기 때문에 해당 object의 필드값만 수정해주기 위해
+detail url에서 likenum or dislikenum +=1
+likenum, dislikenum field는 0 이상의 정수로만 존재 가능
+둘 중 한 필드가 양수일 때 다른 필드를 누른 경우 양수인 필드에서 -=1
+ex) likenum이 0, dislikenum이 4일 때 likenum누르면 dislikenum이 3됨.
 
-### POST /like
+
+### POST /likes ( 첫 번째 좋아요 / 싫어요인 경우)
 
 #### [Request]
 
 | 키        | 설명           | 필수 | 타입   |
 | --------- | -------------- | ---- | ------ |
 | agenda_id | 게시물의 id 값 | O    | serial |
+| user | 현재 로그인된 유저 | O    |   |
 
 #### [Response]
 
 | 키        | 설명                      | 타입   |
 | --------- | ------------------------- | ------ |
-| agenda_id | 게시물의 id 값            | serial |
-| like      | 해당 게시물의 좋아요 갯수 | int    |
+| agenda   | 게시물의 id 값            | serial |
+| creator   | 작성자 | serial    |
+| likenum   | 좋아요 개수 | integer   |
+| dislikenum   | 싫어요 개수 | integer  |
 
 
 
-### POST /dislike
+### PUT /likes/<해당 유저, agenda에 해당하는 Like object의 pk값> ( 두 번째 이상 좋아요, 싫어요인 경우 )
 
 #### [Request]
 
 | 키        | 설명           | 필수 | 타입   |
 | --------- | -------------- | ---- | ------ |
-| agenda_id | 게시물의 id 값 | O    | serial |
+| likenum or dislikenum | +=1 | O    | integer |
 
 #### [Response]
 
 | 키        | 설명                      | 타입   |
 | --------- | ------------------------- | ------ |
-| agenda_id | 게시물의 id 값            | serial |
-| dislike   | 해당 게시물의 싫어요 갯수 | int    |
+| agenda   | 게시물의 id 값            | serial |
+| creator   | 작성자 | serial    |
+| likenum   | 좋아요 개수 | integer   |
+| dislikenum   | 싫어요 개수 | integer  |
 
 
 
-### POST /comment
+### POST /comments
 
 #### [Request]
 
 | 키        | 설명           | 필수 | 타입   |
 | --------- | -------------- | ---- | ------ |
-| agenda_id | 게시물의 id 값 | O    | serial |
-| comment   | 댓글 내용      | O    | string |
+| agenda | 게시물의 id 값 | O    | serial |
+| content   | 댓글 내용      | O    | string |
 
 #### [Response]
 
 | 키        | 설명           | 타입   |
 | --------- | -------------- | ------ |
 | agenda_id | 게시물의 id 값 | serial |
-| comments  |                | array  |
+| content |                | string |
+| creator |                | User |
+| timestamp  |                | datetime |
+| like  |                | integer|
 
