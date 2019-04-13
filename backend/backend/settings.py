@@ -125,3 +125,6 @@ STATIC_URL = '/static/'
 CORS_ORIGIN_WHITELIST = (
          'localhost:8080/'
     )
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'accounts/login'
