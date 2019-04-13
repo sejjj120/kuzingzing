@@ -3,3 +3,4 @@ __pycache__/
 winvenv/
 macvenv/
 frontend/node_modules
+.vscode/
