@@ -1,7 +1,6 @@
-# kuzingzing
+# KUZZ
 
 ## 프로젝트 구조
-
 - ku-zingzing (레포지토리)
   - Readme.md
   - frontend (react.js)
@@ -9,10 +8,32 @@
     - backend (기본 앱)
     - main (주요 기능 앱)
     - accounts (사용자 관리 앱)
-  - venv (파이썬 가상환경)
+  - (win/mac)venv (파이썬 가상환경) # virtualenv로 생성해야 함
 
+## 실행 방법
+_Python이 설치되어 있어야 함_
+### Window(powershell)
+```powershell
+pip3 install virtualenv
+cd ku-zingzing
+virtualenv winvenv
+winvenv/Scripts/activate
+pip install -r requirement.txt
+cd backend
+python manage.py runserver
+```
 
-
+### Mac(bash)
+```bash
+pip3 install virtualenv
+cd ku-zingzing
+virtualenv macvenv
+source macvenv/bin/activate
+pip install -r requirement.txt
+cd backend
+python manage.py runserver
+```
+---
 ## 게시물 관리
 
 | URL                          | METHOD | 기능                                            |
