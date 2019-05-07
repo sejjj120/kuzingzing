@@ -34,6 +34,17 @@ cd backend
 python manage.py runserver
 ```
 ---
+## 계정 관리
+
+| URL               | METHOD | 기능                 |
+| ----------------- | ------ | -------------------- |
+| api/auth/register | POST   | 회원 가입            |
+| api/auth/login    | POST   | 로그인               |
+| api/auth/user     | GET    | 사용자 정보 가져오기 |
+| api/auth/logout   | POST   | 로그아웃             |
+
+
+
 ## 게시물 관리
 
 | URL                          | METHOD | 기능                                            |
@@ -69,7 +80,7 @@ array로 data : {…, …, ...}
 | timestamp   | 작성 시점 (정렬시 필요) | date   |
 | total_likes        | 좋아요 갯수             | int    |
 | total_dislikes     | 싫어요 갯수             | int    |
-| comments    |   해당 agenda 하위 댓글들      | array  |  
+| comments    |   해당 agenda 하위 댓글들      | array  |
 | likes   |   해당 agenda 하위 좋아요, 싫어요      | array  |
 
 
