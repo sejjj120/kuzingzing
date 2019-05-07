@@ -1,13 +1,13 @@
 from rest_framework import serializers
 from main.models import Agenda, Comment, Like
-from accounts.models import MyUser
+from django.contrib.auth.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
+# class UserSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = MyUser
-        fields = ('username', 'email', 'password','age','gender','grade','department')
+#     class Meta:
+#         model = MyUser
+#         fields = ('username', 'email', 'password','age','gender','grade','department')
 
 
 class LikeSerializer(serializers.ModelSerializer):

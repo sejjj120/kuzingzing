@@ -1,13 +1,12 @@
 from main.models import Agenda, Comment, Like
-from accounts.models import MyUser
 from rest_framework import viewsets
 from django.db.models import Sum, Count
-from main.serializers import AgendaSerializer, CommentSerializer, LikeSerializer, UserSerializer
+from main.serializers import AgendaSerializer, CommentSerializer, LikeSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = MyUser.objects.all()
-    serializer_class = UserSerializer
+# class UserViewSet(viewsets.ModelViewSet):
+#     queryset = MyUser.objects.all()
+#     serializer_class = UserSerializer
 
 
 class AgendaViewSet(viewsets.ModelViewSet):

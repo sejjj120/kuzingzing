@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-AUTH_USER_MODEL='accounts.MyUser'
+# AUTH_USER_MODEL='accounts.MyUser'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -131,5 +131,5 @@ CORS_ORIGIN_WHITELIST = (
          'localhost:8080/'
     )
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'accounts/login'
+# LOGIN_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = 'accounts/login'
