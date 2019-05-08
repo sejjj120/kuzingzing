@@ -43,7 +43,84 @@ python manage.py runserver
 | api/auth/user     | GET    | 사용자 정보 가져오기 |
 | api/auth/logout   | POST   | 로그아웃             |
 
+### POST api/auth/register
 
+- request
+
+| 키       | 설명     | 필수 | 타입 |
+| -------- | -------- | ---- | ---- |
+| username | 아이디   | O    |      |
+| email    | 이메일   | O    |      |
+| password | 비밀번호 | O    |      |
+
+- response
+
+| 키    | 설명                      | 타입   |
+| ----- | ------------------------- | ------ |
+| user  | 등록한 사용자에 대한 정보 | JSON   |
+| token | 사용자의 토큰 값          | string |
+
+- example
+
+<img width="960" alt="스크린샷 2019-05-08 오후 1 36 23" src="https://user-images.githubusercontent.com/42646264/57349804-75638400-7196-11e9-8fe0-df93948015f2.png">
+
+### POST api/auth/login
+
+- request
+
+| 키       | 설명     | 필수 | 타입 |
+| -------- | -------- | ---- | ---- |
+| username | 아이디   | O    |      |
+| password | 비밀번호 | O    |      |
+
+- response
+
+| 키    | 설명                        | 타입   |
+| ----- | --------------------------- | ------ |
+| user  | 로그인한 사용자에 대한 정보 | JSON   |
+| token | 사용자의 토큰 값            | string |
+
+- example
+
+<img width="960" alt="스크린샷 2019-05-08 오후 1 45 25" src="https://user-images.githubusercontent.com/42646264/57350070-9678a480-7197-11e9-8cf3-8cdcf151aac3.png">
+
+### GET api/auth/user
+
+- request
+
+| 키                     | 설명             | 필수 | 타입                |
+| ---------------------- | ---------------- | ---- | ------------------- |
+| Authorization (Header) | 사용자의 토큰 값 | O    | token {token_value} |
+
+- response
+
+| 키   | 설명                               | 타입 |
+| ---- | ---------------------------------- | ---- |
+| user | 로그인 되어있는 사용자에 대한 정보 | JSON |
+
+- example
+
+<img width="960" alt="스크린샷 2019-05-08 오후 2 34 30" src="https://user-images.githubusercontent.com/42646264/57351891-7c8e9000-719e-11e9-936c-8ac27cd2d230.png">
+
+### POST api/auth/logout
+
+- request
+
+| 키                     | 설명             | 필수 | 타입                |
+| ---------------------- | ---------------- | ---- | ------------------- |
+| Authorization (Header) | 사용자의 토큰 값 | O    | token {token_value} |
+
+- response
+
+```bash
+"POST /api/auth/logout HTTP/1.1" 204 0
+```
+
+- example
+
+<img width="960" alt="스크린샷 2019-05-08 오후 2 38 43" src="https://user-images.githubusercontent.com/42646264/57352039-0179a980-719f-11e9-9373-edb2165470c4.png">
+
+---
 
 ## 게시물 관리
 
@@ -55,19 +132,17 @@ python manage.py runserver
 | /likes/{like object의 id 값} | PUT    | 게시물 좋아요 or 싫어요(두 번째 이상인 경우)    |
 | /comment                     | POST   | 게시물의 댓글 작성                              |
 
-
-
 ### GET /agendas
 
 게시물들의 정보들을 요청한다.
 
-#### [Request]
+- request
 
 | 키   | 설명 | 필수 | 타입 |
 | ---- | ---- | ---- | ---- |
 |      |      |      |      |
 
-#### [Response]
+- response
 
 array로 data : {…, …, ...}
 
@@ -89,14 +164,14 @@ array로 data : {…, …, ...}
 
 게시물을 등록 후 전체 게시물 불러온다.
 
-#### [Request]
+- request
 
 | 키          | 설명        | 필수 | 타입   |
 | ----------- | ----------- | ---- | ------ |
 | area        | 구역 정보   | O    | string |
 | description | 게시물 내용 | O    | string |
 
-#### [Response]
+- response
 
 | 키          | 설명           | 타입   |
 | ----------- | -------------- | ------ |
@@ -121,14 +196,14 @@ ex) likenum이 0, dislikenum이 4일 때 likenum누르면 dislikenum이 3됨.
 
 ### POST /likes ( 첫 번째 좋아요 / 싫어요인 경우)
 
-#### [Request]
+- request
 
 | 키        | 설명           | 필수 | 타입   |
 | --------- | -------------- | ---- | ------ |
 | agenda_id | 게시물의 id 값 | O    | serial |
 | user | 현재 로그인된 유저 | O    |   |
 
-#### [Response]
+- response
 
 | 키        | 설명                      | 타입   |
 | --------- | ------------------------- | ------ |
@@ -141,13 +216,13 @@ ex) likenum이 0, dislikenum이 4일 때 likenum누르면 dislikenum이 3됨.
 
 ### PUT /likes/<해당 유저, agenda에 해당하는 Like object의 pk값> ( 두 번째 이상 좋아요, 싫어요인 경우 )
 
-#### [Request]
+- request
 
 | 키        | 설명           | 필수 | 타입   |
 | --------- | -------------- | ---- | ------ |
 | likenum or dislikenum | +=1 | O    | integer |
 
-#### [Response]
+- response
 
 | 키        | 설명                      | 타입   |
 | --------- | ------------------------- | ------ |
@@ -160,14 +235,14 @@ ex) likenum이 0, dislikenum이 4일 때 likenum누르면 dislikenum이 3됨.
 
 ### POST /comments
 
-#### [Request]
+- request
 
 | 키        | 설명           | 필수 | 타입   |
 | --------- | -------------- | ---- | ------ |
 | agenda | 게시물의 id 값 | O    | serial |
 | content   | 댓글 내용      | O    | string |
 
-#### [Response]
+- response
 
 | 키        | 설명           | 타입   |
 | --------- | -------------- | ------ |
