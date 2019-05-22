@@ -151,12 +151,11 @@ array로 data : {…, …, ...}
 | agenda_id   | 게시물의 id 값          | serial |
 | description | 게시물 내용             | string |
 | area        | 구역 정보               | string |
-| creator     | 작성자 id               | serial |
+| username     | 작성자 username               | serial |
 | timestamp   | 작성 시점 (정렬시 필요) | date   |
 | total_likes        | 좋아요 갯수             | int    |
 | total_dislikes     | 싫어요 갯수             | int    |
-| comments    |   해당 agenda 하위 댓글들      | array  |
-| likes   |   해당 agenda 하위 좋아요, 싫어요      | array  |
+| agenda_comments    |   해당 agenda 하위 댓글들      | array  |
 
 
 
@@ -178,11 +177,11 @@ array로 data : {…, …, ...}
 | agenda_id   | 게시물의 id 값 | serial |
 | description | 게시물 내용    | string |
 | area        | 구역 정보      |        |
-| creator     | 작성자 id      | serial |
+| username     | 작성자 username      | serial |
 | timestamp   | 작성 시점      | date   |
-| like        | 좋아요 갯수    | int    |
-| dislike     | 싫어요 갯수    | int    |
-| comment     |                | array  |
+| total_like        | 좋아요 갯수    | int    |
+| total_dislike     | 싫어요 갯수    | int    |
+| agenda_comments     |  해당agenda 하위       | array  |
 
 
 첫 번째 좋아요 / 싫어요인 경우 해당 Agenda, User와 연결된 object가 없기 때문에
@@ -248,7 +247,8 @@ ex) likenum이 0, dislikenum이 4일 때 likenum누르면 dislikenum이 3됨.
 | --------- | -------------- | ------ |
 | agenda_id | 게시물의 id 값 | serial |
 | content |                | string |
-| creator |                | User |
+| username |                | User |
 | timestamp  |                | datetime |
-| like  |                | integer|
+| total_likes  |                | integer|
+| total_dislikes  |                | integer|
 
