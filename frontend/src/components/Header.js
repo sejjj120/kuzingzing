@@ -1,15 +1,22 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-export default class Header extends React.Component {
-  render() {
-    return (
-      <header>
-        <div className="container">
-          <h1>PIMFY</h1>
-          <h2>Please In My Front Yard</h2>
-          <p>내 손으로 만들어가는 안암</p>
-        </div>
-      </header>
-    );
-  }
-}
+const Header = () => (
+  <header>
+    <div className="container">
+      <NavLink to="/" activeClassName="is-active" exact={true}>
+        Home
+      </NavLink>
+      <br />
+      <NavLink to="/login" activeClassName="is-active">
+        Login
+      </NavLink>
+      <br />
+      <NavLink to="/signup" activeClassName="is-active">
+        Signup
+      </NavLink>
+    </div>
+  </header>
+);
+
+export default Header;

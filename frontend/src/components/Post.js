@@ -1,15 +1,27 @@
 import React from "react";
 
+// format of a POST
+// {
+//   agenda_id,
+//   discription,
+//   area,
+//   creator,
+//   timestamp,
+//   like,
+//   dislike,
+//   comment,
+// }
+
 export default class Post extends React.Component {
   render() {
     return (
       <div className="post">
-        <h3 className="post__content">
-          {this.props.post.where} {this.props.post.how} {this.props.post.what}가
-          생겼으면 좋겠어요.
-        </h3>
+        <h2 className="post__content">
+          {this.props.post.agenda_id} {"과학도서관"} {"고쳐졌으면 좋겠는 내용"}{" "}
+          {"작성자 ID"}
+        </h2>
         <div className="post__vote">
-          <div className="score">{this.props.post.score}</div>
+          <div className="score">{"Like 갯수"}</div>
           <a
             className="post__upVote"
             onClick={() => {

@@ -1,24 +1,50 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import axios from "axios";
-import Header from "./Header";
 import Form from "./Form";
 import Posts from "./Posts";
+import { corsProxy, baseUrl } from "../config/url";
 
 export default class PimfyApp extends React.Component {
   state = {
-    posts: []
+    posts: [
+      {
+        agenda_id: 1,
+        description: "의자가 고장났어요",
+        area: "과학도서관",
+        creator: "example1",
+        timestamp: "2019.05.22",
+        like: "1",
+        dislike: "0",
+        comment: ["좋아요"]
+      }
+    ]
   };
 
   async componentDidMount() {
+    // get all posts from DB and update
     const users = await axios.get("https://jsonplaceholder.typicode.com/users");
     console.log(users.data);
+    const response = await axios({
+      method: "GET",
+      url: corsProxy + baseUrl + "/Agendas"
+    });
+    console.log(response.data);
   }
 
-  handleAddPost = post => {
+  handleAddPost = async post => {
     if (post) {
-      this.setState(prevState => ({
-        posts: prevState.posts.concat(post)
+      // upload to DB
+      await axios.post(baseUrl + "/Agendas", {
+        area: this.state.where,
+        description: this.state.what
+      });
+
+      // get all posts from DB and update the state.
+      const posts = await axios.get(baseUrl + "/Agendas");
+
+      // update the state with the loaded posts from DB
+      this.setState(() => ({
+        posts
       }));
     }
   };
@@ -50,7 +76,6 @@ export default class PimfyApp extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <main>
           <Form handleAddPost={this.handleAddPost} />
           <Posts

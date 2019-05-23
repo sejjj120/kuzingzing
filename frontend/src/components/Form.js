@@ -11,9 +11,9 @@ export default class Form extends React.Component {
     const post = {
       timestamp: timestamp,
       where: e.target.elements.where.value.trim(),
-      what: e.target.elements.what.value.trim(),
-      how: e.target.elements.how.value.trim(),
-      score: 0
+      what: e.target.elements.what.value.trim()
+      // how: e.target.elements.how.value.trim(),
+      // score: 0
     };
 
     this.props.handleAddPost(post);
@@ -32,10 +32,7 @@ export default class Form extends React.Component {
               <label htmlFor="what">무엇을</label>
               <input id="what" name="what" type="text" />
             </div>
-            <div className="form__item">
-              <label htmlFor="how">어떤</label>
-              <input id="how" name="how" type="text" />
-            </div>
+
             <button className="form__button">부탁해요!</button>
           </form>
         </div>
@@ -43,3 +40,8 @@ export default class Form extends React.Component {
     );
   }
 }
+
+// <div className="form__item">
+//   <label htmlFor="how">어떤</label>
+//   <input id="how" name="how" type="text" />
+// </div>;
