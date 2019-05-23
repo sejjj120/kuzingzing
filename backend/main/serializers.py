@@ -13,15 +13,15 @@ from django.contrib.auth.models import User
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
-        fields = ('agenda', 'creator', 'likenum', 'dislikenum',
+        fields = ('pk', 'agenda', 'creator', 'likenum', 'dislikenum',
                   )
 
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('agenda', 'content', 'timestamp',
-                  'creator')
+        fields = ('pk','agenda', 'content', 'timestamp',
+                  'creator','username')
 
 
 class AgendaSerializer(serializers.ModelSerializer):
@@ -32,6 +32,6 @@ class AgendaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Agenda
-        fields = ('area', 'description', 'timestamp',
-                  'creator', 'agenda_comments', 'agenda_likes', 'total_likes', 'total_dislikes')
+        fields = ('pk', 'area', 'description', 'timestamp',
+                  'creator', 'agenda_comments', 'agenda_likes', 'total_likes', 'total_dislikes','username')
 
