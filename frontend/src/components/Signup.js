@@ -16,7 +16,7 @@ export default class Signup extends React.Component {
     try {
       const response = await axios.post(url + "/api/auth/register", userInfo);
       console.log(response);
-      localStorage.setItem("userData", response);
+      localStorage.setItem("userData", JSON.stringify(response));
       this.props.history.push("/");
       console.log(
         "This is from local storage",

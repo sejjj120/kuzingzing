@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import baseUrl from "../config/url";
+import { corsProxy, baseUrl } from "../config/url";
+const url = corsProxy + baseUrl;
 
 export default class LoginPage extends React.Component {
   handleLogin = async e => {
@@ -12,13 +13,13 @@ export default class LoginPage extends React.Component {
     };
 
     // send the user info to the server to check if it is a authentic user
-    const response = await axios.post(baseUrl + "/api/auth/login", userInfo);
+    const response = await axios.post(url + "/api/auth/login", userInfo);
 
     // save token to local storage.
-    localStorage.setItem("userData", response);
+    localStorage.setItem("userData", JSON.stringify(response));
 
     // Home으로 다시 돌아가기
-    props.history.push("/");
+    this.props.history.push("/");
 
     console.log("This is from local storage", localStorage.getItem("userData"));
   };
